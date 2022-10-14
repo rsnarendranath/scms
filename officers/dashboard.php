@@ -5,41 +5,34 @@ include('../config/config.php');
 if (strlen($_SESSION['alogin']) == 0) {
   header('location:index.php');
 } else {
-
 ?>
-
   <!doctype html>
   <html lang="en" class="no-js">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta name="theme-color" content="#3e454c">
     <link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-
-<!-- Custom CSS -->
-<link href="web/css/style.css" rel='stylesheet' type='text/css' />
-
-<!-- Font awesome -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- Sandstone Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Bootstrap Datatables -->
-<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
-<!-- Bootstrap social button library -->
-<link rel="stylesheet" href="css/bootstrap-social.css">
-<!-- Bootstrap select -->
-<link rel="stylesheet" href="css/bootstrap-select.css">
-<!-- Bootstrap file input -->
-<link rel="stylesheet" href="css/fileinput.min.css">
-<!-- Awesome Bootstrap checkbox -->
-<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
-<!-- Admin Stye -->
-<link rel="stylesheet" href="css/style.css">
-
+    <!-- Custom CSS -->
+    <link href="web/css/style.css" rel='stylesheet' type='text/css' />
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Sandstone Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap Datatables -->
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+    <!-- Bootstrap social button library -->
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+    <!-- Bootstrap select -->
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+    <!-- Bootstrap file input -->
+    <link rel="stylesheet" href="css/fileinput.min.css">
+    <!-- Awesome Bootstrap checkbox -->
+    <link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+    <!-- Admin Stye -->
+    <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
     <?php include('includes/header.php'); ?>
 
@@ -61,7 +54,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <div class="panel-body bk-danger text-light">
                           <div class="stat-panel text-center">
                             <?php
-                            $rt = mysqli_query($con, "SELECT * FROM tblcomplaints where status is null");
+                            $rt = mysqli_query($con, "SELECT * FROM tblcomplaints where category= (select category from officers where id='" . $_SESSION['id'] . "') and status is null");
                             $num1 = mysqli_num_rows($rt); { ?>
                               <div class="stat-panel-number h1 "><?php echo htmlentities($num1); ?></div>
                             <?php } ?>
@@ -78,7 +71,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                           <div class="stat-panel text-center">
                             <?php
                             $status = "in Process";
-                            $rt = mysqli_query($con, "SELECT * FROM tblcomplaints where status='$status'");
+                            $rt = mysqli_query($con, "SELECT * FROM tblcomplaints where category= (select category from officers where id='" . $_SESSION['id'] . "') and status='$status'");
                             $num1 = mysqli_num_rows($rt); { ?> <div class="stat-panel-number h1 "><?php echo htmlentities($num1); ?></div>
                               <i class="fa fa-hourglass-half" aria-hidden="true"></i>
                               <div class="stat-panel-title text-uppercase">Complaints in process</div>
@@ -102,7 +95,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                           <div class="stat-panel text-center">
                             <?php
                             $status = "closed";
-                            $rt = mysqli_query($con, "SELECT * FROM tblcomplaints where status='$status'");
+                            $rt = mysqli_query($con, "SELECT * FROM tblcomplaints where category= (select category from officers where id='" . $_SESSION['id'] . "') and status='$status'");
                             $num1 = mysqli_num_rows($rt); { ?>
                               <div class="stat-panel-number h1 "><?php echo htmlentities($num1); ?></div>
                             <?php } ?>
@@ -112,7 +105,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                         </div>
                         <a href="closed-complaint.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                       </div>
-                    </div>         
+                    </div>
 
 
                     <?php $query = mysqli_query($con, "select feedbackValue,COUNT(feedbackValue) AS MOST_FREQUENT from feedback GROUP BY feedbackValue ORDER BY COUNT(feedbackValue) DESC LIMIT 1");

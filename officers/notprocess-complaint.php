@@ -93,7 +93,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 										<thead>
 											<tr>
 												<th>Complaint No</th>
-												<th> complainant Name</th>
+												<th>Complainant Name</th>
 												<th>Reg Date</th>
 												<th>Status</th>
 												<th>Action</th>
@@ -102,7 +102,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 										
 										<tbody>
 											<?php
-											$query = mysqli_query($con, "select tblcomplaints.*,users.fullName as name from tblcomplaints join users on users.id=tblcomplaints.userId where tblcomplaints.status is null ");
+											$query = mysqli_query($con, "select tblcomplaints.*,users.fullName as name from tblcomplaints join users on users.id=tblcomplaints.userId where category= (select category from officers where id='".$_SESSION['id']."') and tblcomplaints.status is null ");
 											while ($row = mysqli_fetch_array($query)) {
 											?>
 												<tr>
