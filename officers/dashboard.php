@@ -8,6 +8,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 ?>
   <!doctype html>
   <html lang="en" class="no-js">
+
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,19 +34,16 @@ if (strlen($_SESSION['alogin']) == 0) {
     <!-- Admin Stye -->
     <link rel="stylesheet" href="css/style.css">
   </head>
+
   <body>
     <?php include('includes/header.php'); ?>
-
     <div class="ts-main-content">
       <?php include('includes/leftbar.php'); ?>
       <div class="content-wrapper">
         <div class="container-fluid">
-
           <div class="row">
             <div class="col-md-12">
-
               <h2 class="page-title">Dashboard</h2>
-
               <div class="row">
                 <div class="col-md-12">
                   <div class="row">
@@ -81,14 +79,6 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <a href="inprocess-complaint.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                       </div>
                     </div>
-
-
-
-
-
-
-
-
                     <div class="col-md-3">
                       <div class="panel panel-default">
                         <div class="panel-body bk-success text-light">
@@ -108,140 +98,54 @@ if (strlen($_SESSION['alogin']) == 0) {
                     </div>
 
 
-                    <?php $query = mysqli_query($con, "select feedbackValue,COUNT(feedbackValue) AS MOST_FREQUENT from feedback GROUP BY feedbackValue ORDER BY COUNT(feedbackValue) DESC LIMIT 1");
-                    while ($row = mysqli_fetch_array($query)) {
-                    ?>
-                      <?php
-                      $feedbackValue  = $row['feedbackValue'];
-
-                      $Excellent = 'Excellent';
-                      $Good = 'Good';
-                      $Neutral = 'Neutral';
-                      $Poor = 'Poor';
-
-                      if ($feedbackValue == $Excellent) {
-                      ?>
-                        <div class="col-md-3">
-                          <div class="panel panel-default">
-                            <div class="panel-body bk-poor text-light">
-                              <div class="stat-panel text-center">
-                                <div class="stat-panel-number h1 ">Excellent</div>
-                                <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><br />
-                                </i>
-                                <li>Most Common Feedback</li>
-                              </div>
-                            </div>
-                            <a href="feedback-static.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-
-                          <?php } elseif ($feedbackValue == $Good) {
-                          ?>
-                            <div class="col-md-3">
-                              <div class="panel panel-default">
-                                <div class="panel-body bk-poor text-light">
-                                  <div class="stat-panel text-center">
-                                    <div class="stat-panel-number h1 ">Good</div>
-                                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><br />
-                                    </i>
-                                    <li>Most Common Feedback</li>
-                                  </div>
-                                </div>
-                                <a href="feedback-static.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-                              <?php } elseif ($feedbackValue == $Neutral) {
-                              ?>
-                                <div class="col-md-3">
-                                  <div class="panel panel-default">
-                                    <div class="panel-body bk-poor text-light">
-                                      <div class="stat-panel text-center">
-                                        <div class="stat-panel-number h1 ">Neutral</div>
-                                        <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><br />
-                                        </i>
-                                        <li>Most Common Feedback</li>
-                                      </div>
-                                    </div>
-                                    <a href="feedback-static.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-                                  <?php } elseif ($feedbackValue == $Poor) {
-                                  ?>
-                                    <div class="col-md-3">
-                                      <div class="panel panel-default">
-                                        <div class="panel-body bk-poor text-light">
-                                          <div class="stat-panel text-center">
-                                            <div class="stat-panel-number h1 ">Poor</div>
-                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i><br />
-                                            </i>
-                                            <li>Most Common Feedback</li>
-                                          </div>
-                                        </div>
-                                        <a href="feedback-static.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-                                      <?php } else { ?>
-                                        <div class="col-md-3">
-                                          <div class="panel panel-default">
-                                            <div class="panel-body bk-poor text-light">
-                                              <div class="stat-panel text-center">
-                                                <div class="stat-panel-number h1 ">Very Poor</div>
-                                                <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i></i></i>
-                                                </i>
-                                                <li>Most Common Feedback</li>
-                                              </div>
-                                            </div>
-                                            <a href="feedback-static.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
 
-                                          <?php } ?>
-                                        <?php } ?>
+        </div>
 
+        <!-- Loading Scripts -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap-select.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/dataTables.bootstrap.min.js"></script>
+        <script src="js/Chart.min.js"></script>
+        <script src="js/fileinput.js"></script>
+        <script src="js/chartData.js"></script>
+        <script src="js/main.js"></script>
 
+        <script>
+          window.onload = function() {
 
+            // Line chart from swirlData for dashReport
+            var ctx = document.getElementById("dashReport").getContext("2d");
+            window.myLine = new Chart(ctx).Line(swirlData, {
+              responsive: true,
+              scaleShowVerticalLines: false,
+              scaleBeginAtZero: true,
+              multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+            });
 
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+            // Pie Chart from doughutData
+            var doctx = document.getElementById("chart-area3").getContext("2d");
+            window.myDoughnut = new Chart(doctx).Pie(doughnutData, {
+              responsive: true
+            });
 
+            // Dougnut Chart from doughnutData
+            var doctx = document.getElementById("chart-area4").getContext("2d");
+            window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {
+              responsive: true
+            });
 
-
-
-                                </div>
-
-                                <!-- Loading Scripts -->
-                                <script src="js/jquery.min.js"></script>
-                                <script src="js/bootstrap-select.min.js"></script>
-                                <script src="js/bootstrap.min.js"></script>
-                                <script src="js/jquery.dataTables.min.js"></script>
-                                <script src="js/dataTables.bootstrap.min.js"></script>
-                                <script src="js/Chart.min.js"></script>
-                                <script src="js/fileinput.js"></script>
-                                <script src="js/chartData.js"></script>
-                                <script src="js/main.js"></script>
-
-                                <script>
-                                  window.onload = function() {
-
-                                    // Line chart from swirlData for dashReport
-                                    var ctx = document.getElementById("dashReport").getContext("2d");
-                                    window.myLine = new Chart(ctx).Line(swirlData, {
-                                      responsive: true,
-                                      scaleShowVerticalLines: false,
-                                      scaleBeginAtZero: true,
-                                      multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-                                    });
-
-                                    // Pie Chart from doughutData
-                                    var doctx = document.getElementById("chart-area3").getContext("2d");
-                                    window.myDoughnut = new Chart(doctx).Pie(doughnutData, {
-                                      responsive: true
-                                    });
-
-                                    // Dougnut Chart from doughnutData
-                                    var doctx = document.getElementById("chart-area4").getContext("2d");
-                                    window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {
-                                      responsive: true
-                                    });
-
-                                  }
-                                </script>
+          }
+        </script>
   </body>
 
   </html>

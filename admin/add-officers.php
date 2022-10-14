@@ -266,7 +266,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                             <?php $sql = mysqli_query($bd, "select id,categoryName from category ");
                                                             while ($rw = mysqli_fetch_array($sql)) {
                                                             ?>
-                                                                <option value="<?php echo htmlentities($rw['categoryName']); ?>"><?php echo htmlentities($rw['categoryName']); ?></option>
+                                                                <option value="<?php echo htmlentities($rw['id']); ?>"><?php echo htmlentities($rw['categoryName']); ?></option>
                                                             <?php
                                                             }
                                                             ?>
