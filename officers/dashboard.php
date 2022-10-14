@@ -8,7 +8,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 ?>
   <!doctype html>
   <html lang="en" class="no-js">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +33,6 @@ if (strlen($_SESSION['alogin']) == 0) {
     <!-- Admin Stye -->
     <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
     <?php include('includes/header.php'); ?>
     <div class="ts-main-content">
@@ -96,19 +94,12 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <a href="closed-complaint.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
                       </div>
                     </div>
-
-
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
         </div>
-
         <!-- Loading Scripts -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap-select.min.js"></script>
@@ -119,10 +110,8 @@ if (strlen($_SESSION['alogin']) == 0) {
         <script src="js/fileinput.js"></script>
         <script src="js/chartData.js"></script>
         <script src="js/main.js"></script>
-
         <script>
           window.onload = function() {
-
             // Line chart from swirlData for dashReport
             var ctx = document.getElementById("dashReport").getContext("2d");
             window.myLine = new Chart(ctx).Line(swirlData, {
@@ -131,22 +120,18 @@ if (strlen($_SESSION['alogin']) == 0) {
               scaleBeginAtZero: true,
               multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
             });
-
             // Pie Chart from doughutData
             var doctx = document.getElementById("chart-area3").getContext("2d");
             window.myDoughnut = new Chart(doctx).Pie(doughnutData, {
               responsive: true
             });
-
             // Dougnut Chart from doughnutData
             var doctx = document.getElementById("chart-area4").getContext("2d");
             window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {
               responsive: true
             });
-
           }
         </script>
   </body>
-
   </html>
 <?php } ?>
